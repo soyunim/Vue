@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>인스턴스 유효 범위와 지역 컴포넌트, 전역 컴포넌트 간 관계 확인하기</title>
+    </head>
+    
+    <body>
+        <div id ="app">
+            <h3>첫번째 인스턴스 영역</h3>
+            <my-global-cmp></my-global-cmp>
+            <my-local-cmp></my-local-cmp>
+        </div>
+        <hr>
+        <div id ="app2">
+            <h3>두번째 인스턴스 영역</h3>
+            <my-global-cmp></my-global-cmp>
+            <my-local-cmp></my-local-cmp>
+        </div>
+
+        <script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            Vue.component('my-global-cmp',{
+                template: '<div>global component.</div>'
+            });
+            var cmp = {
+                template: '<div>local component.</div>'
+            };
+
+            new Vue({
+                el: '#app',
+                components: {
+                    'my-local-cmp': cmp
+                }
+            });
+
+            new Vue({
+                el: '#app2'
+            });
+        </script>
+    </body>
+</html>
